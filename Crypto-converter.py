@@ -4,12 +4,27 @@ from tkinter import messagebox as mb
 from tkinter import ttk
 
 
+# Функции для данных из комбо-боксов
+def update_a_label(event):
+    code = a_combobox.get()
+    name = crypto_cur[code]
+    a_label.config(text=name)
 
 
+def update_b_label(event):
+    code = b_combobox.get()
+    name = cur[code]
+    b_label.config(text=name)
+
+
+def update_c_label(event):
+    code = c_combobox.get()
+    name = cur[code]
+    c_label.config(text=name)
 
 
 #Словарь с названиями криптовалют
-crypto_names = {
+crypto_cur = {
     'bitcoin': 'Биткоин (BTC)',
     'ethereum': 'Эфириум (ETH)',
     'cardano': 'Кардано (ADA)',
@@ -49,27 +64,27 @@ window.geometry(f'600x400+{w2}+{h2}')
 # Виджеты для работы с приложением
 # Метка выбора криптовалюты, комбо-бокс к ней и метка вывода
 Label(text='Выберите криптовалюту:', font='Arial 12').grid(row=0,column=1, padx=10, pady=10)
-a_combobox = ttk.Combobox(values=list())
+a_combobox = ttk.Combobox(values=list(crypto_cur.keys()))
 a_combobox.grid(row=1, column=1,padx=10, pady=10)
-#a_combobox.bind('<<ComboboxSelected>>', update_a_label)
+a_combobox.bind('<<ComboboxSelected>>', update_a_label)
 
 a_label = ttk.Label(text='Тестовая строка')
 a_label.grid(row=2, column=1,padx=10, pady=10)
 
 #Метка выбора валюты, комбо-бокс к ней и метка вывода
 Label(text='Выберите валюту:', font='Arial 12').grid(row=3,column=0, padx=10)
-b_combobox = ttk.Combobox(values=list())
+b_combobox = ttk.Combobox(values=list(cur.keys()))
 b_combobox.grid(row=4, column=0,padx=20, pady=10)
-#b_combobox.bind('<<ComboboxSelected>>', update_b_label)
+b_combobox.bind('<<ComboboxSelected>>', update_b_label)
 
 b_label = ttk.Label(text='Тестовая строка')
 b_label.grid(row=5, column=0, padx=20, pady=10)
 
 #Метка выбора второй валюты, комбо-бокс к ней и метка вывода
 Label(text='Выберите вторую валюту:', font='Arial 12').grid(row=3,column=3)
-c_combobox = ttk.Combobox(values=list())
+c_combobox = ttk.Combobox(values=list(cur.keys()))
 c_combobox.grid(row=4, column=3,padx=10, pady=10)
-#c_combobox.bind('<<ComboboxSelected>>', update_c_label)
+c_combobox.bind('<<ComboboxSelected>>', update_c_label)
 
 c_label = ttk.Label(text='Тестовая строка')
 c_label.grid(row=5, column=3, padx=20, pady=10)
